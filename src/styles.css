@@ -39,10 +39,10 @@
 :root {
   --radius: 0.75rem;
   /* Kore palette */
-  --forest: oklch(0.32 0.06 158);        /* #1B4332 deep green */
-  --cream: oklch(0.96 0.02 90);          /* #F5F1E8 */
-  --coral: oklch(0.68 0.16 38);          /* #E07856 */
-  --charcoal: oklch(0.20 0 0);           /* #1A1A1A */
+  --forest: oklch(0.32 0.06 158); /* #1B4332 deep green */
+  --cream: oklch(0.96 0.02 90); /* #F5F1E8 */
+  --coral: oklch(0.68 0.16 38); /* #E07856 */
+  --charcoal: oklch(0.2 0 0); /* #1A1A1A */
 
   --background: var(--cream);
   --foreground: var(--charcoal);
@@ -77,12 +77,56 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    margin: 0;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.astonish-page {
+  font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+.astonish-page h1,
+.astonish-page h2,
+.astonish-page h3,
+.astonish-page p,
+.astonish-page figure,
+.astonish-page blockquote {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.astonish-page h1,
+.astonish-page h2,
+.astonish-page h3 {
+  font-family: inherit;
+}
+
+.astonish-page a:focus-visible {
+  outline: 3px solid #a7e548;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

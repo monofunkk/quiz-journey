@@ -10,12 +10,18 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as AstonishRouteImport } from './routes/astonish'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ASlugRouteImport } from './routes/a.$slug'
 
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
   path: '/quiz',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AstonishRoute = AstonishRouteImport.update({
+  id: '/astonish',
+  path: '/astonish',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,30 +37,34 @@ const ASlugRoute = ASlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/astonish': typeof AstonishRoute
   '/quiz': typeof QuizRoute
   '/a/$slug': typeof ASlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/astonish': typeof AstonishRoute
   '/quiz': typeof QuizRoute
   '/a/$slug': typeof ASlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/astonish': typeof AstonishRoute
   '/quiz': typeof QuizRoute
   '/a/$slug': typeof ASlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quiz' | '/a/$slug'
+  fullPaths: '/' | '/astonish' | '/quiz' | '/a/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/quiz' | '/a/$slug'
-  id: '__root__' | '/' | '/quiz' | '/a/$slug'
+  to: '/' | '/astonish' | '/quiz' | '/a/$slug'
+  id: '__root__' | '/' | '/astonish' | '/quiz' | '/a/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AstonishRoute: typeof AstonishRoute
   QuizRoute: typeof QuizRoute
   ASlugRoute: typeof ASlugRoute
 }
@@ -66,6 +76,13 @@ declare module '@tanstack/react-router' {
       path: '/quiz'
       fullPath: '/quiz'
       preLoaderRoute: typeof QuizRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/astonish': {
+      id: '/astonish'
+      path: '/astonish'
+      fullPath: '/astonish'
+      preLoaderRoute: typeof AstonishRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AstonishRoute: AstonishRoute,
   QuizRoute: QuizRoute,
   ASlugRoute: ASlugRoute,
 }
